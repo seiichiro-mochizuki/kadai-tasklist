@@ -64,7 +64,7 @@ public class UpdateServlet extends HttpServlet {
                 // データベースを更新
                 em.getTransaction().begin();
                 em.getTransaction().commit();
-                request.getSession().setAttribute("flush", "更新が完了しました。");
+                request.getSession().setAttribute("flush", "更新完了");
                 em.close();
 
                 // セッションスコープ上の不要になったデータを削除
@@ -74,17 +74,7 @@ public class UpdateServlet extends HttpServlet {
                 response.sendRedirect(request.getContextPath() + "/index");
             }
 
-            //DB更新
-            em.getTransaction().begin();
-            em.getTransaction().commit();
-            request.getSession().setAttribute("flush", "更新完了");
-            em.close();
 
-            //セッションスコープ状の不要になったデータを削除
-            request.getSession().removeAttribute("task_id");
-
-            //indexへのリダイレクト
-            response.sendRedirect(request.getContextPath() + "/index");
         }
     }
 
